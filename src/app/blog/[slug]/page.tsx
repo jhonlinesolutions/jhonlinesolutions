@@ -8,6 +8,7 @@ import { Section, Container } from "@/components/section";
 import { mdxComponents } from "@/components/mdx-components";
 import { BlogCard } from "@/components/blog-card";
 import { Reveal } from "@/components/reveal";
+import { DuotoneImage } from "@/components/duotone-image";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -82,7 +83,19 @@ export default async function BlogPostPage({
         </Container>
       </Section>
 
-      <Section className="pt-8 pb-20">
+      <Container className="mt-10 max-w-5xl">
+        <Reveal delay={0.2}>
+          <DuotoneImage
+            src={post.cover}
+            alt={post.coverAlt}
+            sizes="(min-width: 1024px) 1024px, 100vw"
+            preload
+            className="aspect-[16/9] rounded-3xl md:aspect-[21/9]"
+          />
+        </Reveal>
+      </Container>
+
+      <Section className="pt-12 pb-20">
         <Container className="max-w-3xl">
           <article>
             <MDXRemote source={post.content} components={mdxComponents} />
@@ -97,8 +110,8 @@ export default async function BlogPostPage({
               Continue lendo
             </h2>
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((p, i) => (
-                <BlogCard key={p.slug} post={p} index={i} />
+              {related.map((p) => (
+                <BlogCard key={p.slug} post={p} />
               ))}
             </div>
           </Container>

@@ -39,9 +39,9 @@ export default function BlogPage() {
       <Section className="pt-0 pb-24">
         <Container>
           <RevealGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post, index) => (
-              <RevealItem key={post.slug}>
-                <BlogCard post={post} index={index} />
+            {posts.map((post) => (
+              <RevealItem key={post.slug} className="h-full">
+                <BlogCard post={post} />
               </RevealItem>
             ))}
           </RevealGroup>

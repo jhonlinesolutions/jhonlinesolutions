@@ -11,6 +11,8 @@ export type BlogFrontmatter = {
   date: string;
   category: string;
   author: string;
+  cover: string;
+  coverAlt: string;
 };
 
 export type BlogPost = BlogFrontmatter & {

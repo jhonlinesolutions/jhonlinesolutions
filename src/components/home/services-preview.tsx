@@ -39,7 +39,7 @@ export function ServicesPreview() {
 
         <RevealGroup className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {featured.map((service) => (
-            <RevealItem key={service.id}>
+            <RevealItem key={service.id} className="h-full">
               <ServiceCard service={service} />
             </RevealItem>
           ))}

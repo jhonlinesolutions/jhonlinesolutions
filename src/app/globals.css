@@ -147,3 +147,80 @@ body {
 .bg-noise {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
 }
+
+/* Duotone photo treatment: grayscale photo takes the hue of the brand gradient behind it. */
+.duotone {
+  isolation: isolate;
+  background: linear-gradient(
+    135deg,
+    #0b1d45 0%,
+    #1e63d6 55%,
+    #2bc0c9 100%
+  );
+}
+.duotone-base {
+  filter: grayscale(1) contrast(1.12) brightness(1.05);
+  mix-blend-mode: luminosity;
+}
+.duotone-color {
+  opacity: 0;
+}
+.duotone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 45%, rgb(5 7 13 / 0.45) 100%);
+}
+
+/* Hero: color "flashlight" that follows the cursor inside the photo frame. */
+.hero-reveal {
+  -webkit-mask-image: radial-gradient(
+    220px circle at var(--fx, -999px) var(--fy, -999px),
+    black 0%,
+    rgb(0 0 0 / 0.6) 45%,
+    transparent 72%
+  );
+  mask-image: radial-gradient(
+    220px circle at var(--fx, -999px) var(--fy, -999px),
+    black 0%,
+    rgb(0 0 0 / 0.6) 45%,
+    transparent 72%
+  );
+}
+
+/* Hero: grid and glow that light up around the cursor. */
+.hero-spotlight {
+  background: radial-gradient(
+    560px circle at var(--mx, 50%) var(--my, -20%),
+    rgb(91 108 240 / 0.16),
+    transparent 60%
+  );
+}
+.hero-grid-lit {
+  -webkit-mask-image: radial-gradient(
+    260px circle at var(--mx, -999px) var(--my, -999px),
+    black,
+    transparent 75%
+  );
+  mask-image: radial-gradient(
+    260px circle at var(--mx, -999px) var(--my, -999px),
+    black,
+    transparent 75%
+  );
+}
+
+@keyframes eq {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.animate-eq {
+  transform-origin: bottom;
+  animation: eq 1.4s ease-in-out infinite;
+}

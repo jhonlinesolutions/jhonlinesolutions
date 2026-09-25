@@ -38,9 +38,9 @@ export function BlogPreview() {
         </div>
 
         <RevealGroup className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post, index) => (
-            <RevealItem key={post.slug}>
-              <BlogCard post={post} index={index} />
+          {posts.map((post) => (
+            <RevealItem key={post.slug} className="h-full">
+              <BlogCard post={post} />
             </RevealItem>
           ))}
         </RevealGroup>

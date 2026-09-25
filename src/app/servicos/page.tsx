@@ -5,6 +5,7 @@ import { Section, Container } from "@/components/section";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 import { ServiceIconGlyph } from "@/components/service-icon";
+import { DuotoneImage } from "@/components/duotone-image";
 import { services } from "@/lib/services-data";
 import { FinalCta } from "@/components/home/final-cta";
 
@@ -44,6 +45,14 @@ export default function ServicosPage() {
                       <h2 className="font-display mt-2 text-2xl font-semibold tracking-tight text-ink-900">
                         {service.title}
                       </h2>
+                      <div className="group mt-6">
+                        <DuotoneImage
+                          src={service.image.src}
+                          alt={service.image.alt}
+                          sizes="(min-width: 1024px) 280px, 100vw"
+                          className="aspect-[4/3] rounded-2xl"
+                        />
+                      </div>
                     </div>
 
                     <div>

@@ -13,11 +13,16 @@ export type Service = {
   shortDescription: string;
   description: string;
   bullets: string[];
+  image: { src: string; alt: string };
 };
 
 export const services: Service[] = [
   {
     id: "desenvolvimento",
+    image: {
+      src: "/images/services/desenvolvimento.jpg",
+      alt: "Desenvolvedor trabalhando em múltiplos monitores com código",
+    },
     icon: "code",
     title: "Desenvolvimento de Software",
     shortDescription:
@@ -33,6 +38,10 @@ export const services: Service[] = [
   },
   {
     id: "cloud",
+    image: {
+      src: "/images/services/cloud.jpg",
+      alt: "Racks de servidores com cabos de rede em um data center",
+    },
     icon: "cloud",
     title: "Cloud & DevOps",
     shortDescription:
@@ -48,6 +57,10 @@ export const services: Service[] = [
   },
   {
     id: "consultoria",
+    image: {
+      src: "/images/services/consultoria.jpg",
+      alt: "Equipe discutindo um plano em frente a um quadro branco",
+    },
     icon: "compass",
     title: "Consultoria em TI",
     shortDescription:
@@ -63,6 +76,10 @@ export const services: Service[] = [
   },
   {
     id: "seguranca",
+    image: {
+      src: "/images/services/seguranca.jpg",
+      alt: "Cadeado sobre o teclado de um notebook",
+    },
     icon: "shield",
     title: "Segurança da Informação",
     shortDescription:
@@ -78,6 +95,10 @@ export const services: Service[] = [
   },
   {
     id: "automacao",
+    image: {
+      src: "/images/services/automacao.jpg",
+      alt: "Braço robótico automatizado em ambiente iluminado em azul",
+    },
     icon: "cpu",
     title: "Automação & IA",
     shortDescription:
@@ -93,6 +114,10 @@ export const services: Service[] = [
   },
   {
     id: "suporte",
+    image: {
+      src: "/images/services/suporte.jpg",
+      alt: "Mesa de trabalho com tablet, anotações e monitores",
+    },
     icon: "lifebuoy",
     title: "Suporte & Sustentação",
     shortDescription:

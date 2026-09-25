@@ -2,27 +2,22 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { BlogPost } from "@/lib/blog";
 import { formatDate } from "@/lib/blog";
+import { DuotoneImage } from "./duotone-image";
 
-const gradients = [
-  "from-accent-500 to-cyan-400",
-  "from-cyan-500 to-accent-400",
-  "from-brand-700 to-accent-500",
-  "from-accent-600 to-cyan-500",
-];
-
-export function BlogCard({ post, index = 0 }: { post: BlogPost; index?: number }) {
-  const gradient = gradients[index % gradients.length];
-
+export function BlogCard({ post }: { post: BlogPost }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-brand-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-20px_rgba(15,23,42,0.25)]"
+      className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-brand-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-20px_rgba(15,23,42,0.25)]"
     >
-      <div
-        className={`relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br ${gradient}`}
-      >
-        <div className="bg-grid absolute inset-0 opacity-30" />
-        <span className="relative rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+      <div className="relative">
+        <DuotoneImage
+          src={post.cover}
+          alt={post.coverAlt}
+          sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
+          className="aspect-[16/10]"
+        />
+        <span className="absolute top-4 left-4 z-10 rounded-full border border-white/20 bg-brand-950/40 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">
           {post.category}
         </span>
       </div>
