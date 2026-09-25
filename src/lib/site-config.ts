@@ -4,7 +4,7 @@ export const siteConfig = {
   tagline: "Tecnologia que move o seu negócio adiante",
   description:
     "Consultoria em tecnologia, desenvolvimento de software sob medida e soluções em nuvem para empresas que querem crescer com segurança e performance.",
-  url: "https://www.jhonlinesolutions.com.br",
+  url: "https://jhonlinesolutions.com.br",
   locale: "pt-BR",
   email: "contato@jhonlinesolutions.com.br",
   phone: "+55 11 96376-5638",
