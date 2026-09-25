@@ -1,10 +1,17 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { siteConfig } from "@/lib/site-config";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image() {
+  const logoMark = await readFile(
+    join(process.cwd(), "public/brand/logo-mark.png"),
+    "base64"
+  );
+
   return new ImageResponse(
     (
       <div
@@ -21,14 +28,11 @@ export default function Image() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div
-            style={{
-              width: 56,
-              height: 56,
-              borderRadius: 14,
-              display: "flex",
-              background: "linear-gradient(135deg, #5B6CF0 0%, #22C1D1 100%)",
-            }}
+          {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+          <img
+            src={`data:image/png;base64,${logoMark}`}
+            width={65}
+            height={56}
           />
           <div style={{ display: "flex", fontSize: 30, color: "white", fontWeight: 700 }}>
             JH Online Solutions

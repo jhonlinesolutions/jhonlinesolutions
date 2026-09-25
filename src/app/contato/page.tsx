@@ -34,7 +34,7 @@ const contactItems = [
   {
     icon: MapPin,
     label: "Endereço",
-    value: `${siteConfig.address.street}, ${siteConfig.address.city}/${siteConfig.address.state}`,
+    value: `${siteConfig.address.street}, ${siteConfig.address.complement} — ${siteConfig.address.city}/${siteConfig.address.state}`,
     href: undefined,
   },
 ];

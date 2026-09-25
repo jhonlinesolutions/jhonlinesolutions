@@ -114,8 +114,8 @@ export function Footer() {
               <li className="leading-relaxed">
                 {siteConfig.address.street}, {siteConfig.address.complement}
                 <br />
-                {siteConfig.address.city}/{siteConfig.address.state} —{" "}
-                {siteConfig.address.zip}
+                {siteConfig.address.city}/{siteConfig.address.state}
+                {siteConfig.address.zip && ` — ${siteConfig.address.zip}`}
               </li>
             </ul>
             <Link

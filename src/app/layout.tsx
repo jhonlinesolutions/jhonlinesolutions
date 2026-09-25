@@ -78,10 +78,10 @@ export default function RootLayout({
               description: siteConfig.description,
               address: {
                 "@type": "PostalAddress",
-                streetAddress: siteConfig.address.street,
+                streetAddress: `${siteConfig.address.street}, ${siteConfig.address.complement}`,
                 addressLocality: siteConfig.address.city,
                 addressRegion: siteConfig.address.state,
-                postalCode: siteConfig.address.zip,
+                postalCode: siteConfig.address.zip || undefined,
                 addressCountry: "BR",
               },
               sameAs: Object.values(siteConfig.social),

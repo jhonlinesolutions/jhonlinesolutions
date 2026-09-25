@@ -12,6 +12,8 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  // Only the home page has a dark hero behind the navbar; light pages need a solid bar.
+  const solid = scrolled || open || pathname !== "/";
   const [prevPathname, setPrevPathname] = useState(pathname);
 
   if (pathname !== prevPathname) {
@@ -37,8 +39,8 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6 md:pt-5">
       <div
         className={`mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-4 py-3 backdrop-blur-xl transition-all duration-300 md:px-5 ${
-          scrolled || open
-            ? "border-white/10 bg-brand-950/80 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)]"
+          solid
+            ? "border-white/10 bg-brand-950/90 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)]"
             : "border-white/5 bg-brand-950/40"
         }`}
       >
