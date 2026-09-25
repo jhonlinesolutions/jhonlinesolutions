@@ -9,7 +9,7 @@ Site institucional e blog da **JH Online Solutions LTDA**, construído com Next.
 - **Framer Motion** para animações de scroll (respeitando `prefers-reduced-motion`)
 - **Blog em MDX** — posts versionados em `content/blog/*.mdx`, sem CMS externo
 - **Zod** para validação do formulário de contato (Server Action)
-- **Resend** (opcional) para envio de e-mail do formulário de contato
+- **Nodemailer** + SMTP da Hostinger para envio de e-mail do formulário de contato
 
 ## Rodando localmente
 
@@ -30,8 +30,9 @@ cp .env.example .env.local
 
 | Variável | Obrigatória | Descrição |
 |---|---|---|
-| `RESEND_API_KEY` | Não | Chave da [Resend](https://resend.com) para enviar e-mails do formulário de contato. Sem ela, o formulário exibe uma mensagem pedindo contato direto por e-mail/telefone — o site funciona normalmente, só o envio automático fica desativado. |
-| `CONTACT_FROM_EMAIL` | Não | Remetente do e-mail (precisa ser um domínio verificado na Resend, ou use o padrão `onboarding@resend.dev` para testes). |
+| `SMTP_USER` | Não | Caixa de e-mail da Hostinger que envia as mensagens do formulário (também é o remetente). |
+| `SMTP_PASSWORD` | Não | Senha dessa caixa de e-mail. Sem `SMTP_USER`/`SMTP_PASSWORD`, o formulário exibe uma mensagem pedindo contato direto por e-mail/telefone — o site funciona normalmente, só o envio automático fica desativado. |
+| `SMTP_HOST` / `SMTP_PORT` | Não | Servidor SMTP. Padrão: `smtp.hostinger.com` na porta `465` (SSL). |
 | `CONTACT_TO_EMAIL` | Não | Caixa de entrada que recebe os leads. Padrão: `contato@jhonlinesolutions.com.br`. |
 
 ## Estrutura

@@ -46,8 +46,9 @@ export async function submitContactForm(
 
   const data = parsed.data;
 
-  if (!process.env.RESEND_API_KEY) {
-    console.info("[contato] Novo lead (RESEND_API_KEY não configurada):", data);
+  const { SMTP_USER, SMTP_PASSWORD } = process.env;
+  if (!SMTP_USER || !SMTP_PASSWORD) {
+    console.info("[contato] Novo lead (SMTP não configurado):", data);
     return {
       status: "error",
       message:
@@ -56,13 +57,18 @@ export async function submitContactForm(
   }
 
   try {
-    const { Resend } = await import("resend");
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const { createTransport } = await import("nodemailer");
+    const transporter = createTransport({
+      host: process.env.SMTP_HOST ?? "smtp.hostinger.com",
+      port: Number(process.env.SMTP_PORT ?? 465),
+      secure: Number(process.env.SMTP_PORT ?? 465) === 465,
+      auth: { user: SMTP_USER, pass: SMTP_PASSWORD },
+    });
 
-    await resend.emails.send({
-      from: process.env.CONTACT_FROM_EMAIL ?? "JH Online Solutions <onboarding@resend.dev>",
+    await transporter.sendMail({
+      from: { name: `${siteConfig.name} — Site`, address: SMTP_USER },
       to: process.env.CONTACT_TO_EMAIL ?? siteConfig.email,
-      replyTo: data.email,
+      replyTo: { name: data.name, address: data.email },
       subject: `Novo contato pelo site — ${data.name}`,
       text: [
         `Nome: ${data.name}`,
