@@ -18,11 +18,6 @@ export const siteConfig = {
     zip: "01031-902",
     country: "Brasil",
   },
-  social: {
-    linkedin: "https://www.linkedin.com/company/jh-online-solutions",
-    instagram: "https://www.instagram.com/jhonlinesolutions",
-    github: "https://github.com/jh-online-solutions",
-  },
   nav: [
     { label: "Início", href: "/" },
     { label: "Sobre", href: "/sobre" },

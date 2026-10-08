@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { getAllPosts } from "@/lib/blog";
 import { Section, Container } from "@/components/section";
 import { Eyebrow } from "@/components/eyebrow";
 import { BlogCard } from "@/components/blog-card";
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Blog",
   description:
     "Artigos sobre cloud, segurança da informação, engenharia de software e transformação digital, escritos pela equipe da JH Online Solutions.",
-};
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const posts = getAllPosts();

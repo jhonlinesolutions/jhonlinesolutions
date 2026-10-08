@@ -28,7 +28,7 @@ export const services: Service[] = [
     shortDescription:
       "Sistemas web, APIs e produtos digitais sob medida, construídos para escalar com o seu negócio.",
     description:
-      "Projetamos e desenvolvimento aplicações web, APIs e produtos digitais sob medida, do zero ou evoluindo sistemas legados. Trabalhamos com arquiteturas modernas, testes automatizados e entregas contínuas para que o seu time de negócio veja valor desde as primeiras semanas.",
+      "Projetamos e desenvolvemos aplicações web, APIs e produtos digitais sob medida, do zero ou evoluindo sistemas legados. Trabalhamos com arquiteturas modernas, testes automatizados e entregas contínuas para que o seu time de negócio veja valor desde as primeiras semanas.",
     bullets: [
       "Plataformas web e aplicações internas sob medida",
       "APIs e integrações entre sistemas",

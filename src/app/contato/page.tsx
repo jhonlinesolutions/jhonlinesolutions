@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { Section, Container } from "@/components/section";
 import { PageHeader } from "@/components/page-header";
@@ -6,11 +7,12 @@ import { Reveal } from "@/components/reveal";
 import { ContactForm } from "@/components/contact-form";
 import { siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contato",
   description:
     "Fale com a equipe da JH Online Solutions e receba um diagnóstico inicial sem compromisso para o seu projeto de tecnologia.",
-};
+  path: "/contato",
+});
 
 const contactItems = [
   {

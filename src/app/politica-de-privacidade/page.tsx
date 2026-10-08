@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { PageHeader } from "@/components/page-header";
 import { Section, Container } from "@/components/section";
 import { siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Política de Privacidade",
   description:
     "Como a JH Online Solutions coleta, usa e protege dados pessoais, em conformidade com a LGPD.",
-};
+  path: "/politica-de-privacidade",
+});
 
 export default function PoliticaDePrivacidadePage() {
   return (

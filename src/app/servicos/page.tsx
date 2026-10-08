@@ -1,4 +1,10 @@
 import type { Metadata } from "next";
+import {
+  ORGANIZATION_ID,
+  absoluteUrl,
+  jsonLdScript,
+  pageMetadata,
+} from "@/lib/seo";
 import Link from "next/link";
 import { CheckCircle2, ArrowUpRight } from "lucide-react";
 import { Section, Container } from "@/components/section";
@@ -9,15 +15,40 @@ import { DuotoneImage } from "@/components/duotone-image";
 import { services } from "@/lib/services-data";
 import { FinalCta } from "@/components/home/final-cta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Serviços",
   description:
     "Desenvolvimento de software, cloud & DevOps, consultoria em TI, segurança da informação, automação e IA, suporte e sustentação.",
+  path: "/servicos",
+});
+
+const servicesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: services.map((service, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Service",
+      "@id": absoluteUrl(`/servicos#${service.id}`),
+      name: service.title,
+      description: service.description,
+      url: absoluteUrl(`/servicos#${service.id}`),
+      image: absoluteUrl(service.image.src),
+      serviceType: service.title,
+      areaServed: { "@type": "Country", name: "Brasil" },
+      provider: { "@id": ORGANIZATION_ID },
+    },
+  })),
 };
 
 export default function ServicosPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(servicesJsonLd)}
+      />
       <PageHeader
         eyebrow="Serviços"
         title="Soluções de ponta a ponta em tecnologia"

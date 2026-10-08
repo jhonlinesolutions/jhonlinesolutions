@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Code2, ShieldCheck, Target, RefreshCw } from "lucide-react";
 import { Section, Container } from "@/components/section";
 import { Eyebrow } from "@/components/eyebrow";
@@ -6,11 +7,12 @@ import { PageHeader } from "@/components/page-header";
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 import { FinalCta } from "@/components/home/final-cta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Sobre",
   description:
     "Conheça a JH Online Solutions: consultoria em tecnologia e engenharia de software focada em resultado, transparência e parceria de longo prazo.",
-};
+  path: "/sobre",
+});
 
 const values = [
   {

@@ -9,6 +9,14 @@ import { mdxComponents } from "@/components/mdx-components";
 import { BlogCard } from "@/components/blog-card";
 import { Reveal } from "@/components/reveal";
 import { DuotoneImage } from "@/components/duotone-image";
+import { siteConfig } from "@/lib/site-config";
+import {
+  ORGANIZATION_ID,
+  WEBSITE_ID,
+  absoluteUrl,
+  jsonLdScript,
+  pageMetadata,
+} from "@/lib/seo";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -23,16 +31,13 @@ export async function generateMetadata({
   const post = getPostBySlug(slug);
   if (!post) return {};
 
-  return {
+  return pageMetadata({
     title: post.title,
     description: post.description,
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      type: "article",
-      publishedTime: post.date,
-    },
-  };
+    path: `/blog/${post.slug}`,
+    image: { url: post.cover, alt: post.coverAlt },
+    article: { publishedTime: post.date, authors: [post.author] },
+  });
 }
 
 export default async function BlogPostPage({
@@ -48,8 +53,49 @@ export default async function BlogPostPage({
     .filter((p) => p.slug !== slug)
     .slice(0, 3);
 
+  const url = absoluteUrl(`/blog/${post.slug}`);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${url}#article`,
+        mainEntityOfPage: url,
+        url,
+        headline: post.title,
+        description: post.description,
+        image: absoluteUrl(post.cover),
+        datePublished: post.date,
+        dateModified: post.date,
+        inLanguage: siteConfig.locale,
+        articleSection: post.category,
+        timeRequired: `PT${post.readingMinutes}M`,
+        author: {
+          "@type": "Person",
+          name: post.author,
+          jobTitle: post.authorRole,
+          worksFor: { "@id": ORGANIZATION_ID },
+        },
+        publisher: { "@id": ORGANIZATION_ID },
+        isPartOf: { "@id": WEBSITE_ID },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Início", item: siteConfig.url },
+          { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog") },
+          { "@type": "ListItem", position: 3, name: post.title, item: url },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(jsonLd)}
+      />
       <Section className="pt-36 pb-4 md:pt-44">
         <Container className="max-w-3xl">
           <Reveal>
@@ -73,7 +119,9 @@ export default async function BlogPostPage({
           </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-5 flex items-center gap-3 text-sm text-ink-500">
-              <span>{post.author}</span>
+              <span>
+                {post.author}, {post.authorRole}
+              </span>
               <span aria-hidden>·</span>
               <span>{formatDate(post.date)}</span>
               <span aria-hidden>·</span>

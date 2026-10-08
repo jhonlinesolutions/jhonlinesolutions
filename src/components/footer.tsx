@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "./logo";
 import { siteConfig } from "@/lib/site-config";
-import { LinkedinIcon, InstagramIcon, GithubIcon } from "./brand-icons";
 
 const columns = [
   {
@@ -39,35 +38,6 @@ export function Footer() {
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-300">
               {siteConfig.description}
             </p>
-            <div className="mt-6 flex items-center gap-3">
-              <a
-                href={siteConfig.social.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn da JH Online Solutions"
-                className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/10 text-ink-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
-              >
-                <LinkedinIcon size={16} />
-              </a>
-              <a
-                href={siteConfig.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram da JH Online Solutions"
-                className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/10 text-ink-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
-              >
-                <InstagramIcon size={16} />
-              </a>
-              <a
-                href={siteConfig.social.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub da JH Online Solutions"
-                className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/10 text-ink-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
-              >
-                <GithubIcon size={16} />
-              </a>
-            </div>
           </div>
 
           {columns.map((col) => (

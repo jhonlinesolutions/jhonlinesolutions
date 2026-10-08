@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { PageHeader } from "@/components/page-header";
 import { Section, Container } from "@/components/section";
 import { siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Termos de Uso",
-  description: "Termos de uso do site institucional da JH Online Solutions.",
-};
+  description:
+    "Termos de uso do site institucional da JH Online Solutions.",
+  path: "/termos-de-uso",
+});
 
 export default function TermosDeUsoPage() {
   return (
