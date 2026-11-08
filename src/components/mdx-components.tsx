@@ -30,13 +30,17 @@ export const mdxComponents: MDXComponents = {
     />
   ),
   li: (props) => <li className="pl-1" {...props} />,
-  a: ({ href, ...props }) => (
-    <Link
-      href={href ?? "#"}
-      className="font-medium text-accent-600 underline decoration-accent-400/40 underline-offset-4 transition-colors duration-200 hover:text-accent-500"
-      {...props}
-    />
-  ),
+  a: ({ href, ...props }) => {
+    const className =
+      "font-medium text-accent-600 underline decoration-accent-400/40 underline-offset-4 transition-colors duration-200 hover:text-accent-500";
+    // Fontes externas abrem em nova aba; links internos seguem pelo Link do Next.
+    if (href?.startsWith("http")) {
+      return (
+        <a href={href} target="_blank" rel="noopener" className={className} {...props} />
+      );
+    }
+    return <Link href={href ?? "#"} className={className} {...props} />;
+  },
   strong: (props) => (
     <strong className="font-semibold text-ink-900" {...props} />
   ),

@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import Image from "next/image";
+import {
+  ORGANIZATION_ID,
+  absoluteUrl,
+  jsonLdScript,
+  pageMetadata,
+} from "@/lib/seo";
+import { getAuthor, authorId } from "@/lib/authors";
 import { Code2, ShieldCheck, Target, RefreshCw } from "lucide-react";
 import { Section, Container } from "@/components/section";
 import { Eyebrow } from "@/components/eyebrow";
@@ -41,9 +48,36 @@ const values = [
   },
 ];
 
+const jomar = getAuthor("Jomar Hanum")!;
+
+const services = [
+  "Construção de sites",
+  "Atendimento por IA no WhatsApp",
+  "Criação de lojas virtuais",
+  "Anúncios no Google e no Instagram",
+  "Desenvolvimento de aplicativos",
+];
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": authorId(jomar),
+  name: jomar.name,
+  jobTitle: "Diretor",
+  image: absoluteUrl(jomar.photo),
+  url: absoluteUrl(jomar.profilePath),
+  worksFor: { "@id": ORGANIZATION_ID },
+  knowsAbout: services,
+  ...(jomar.sameAs.length > 0 && { sameAs: jomar.sameAs }),
+};
+
 export default function SobrePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(personJsonLd)}
+      />
       <PageHeader
         eyebrow="Sobre nós"
         title="Parceiros de tecnologia, não apenas fornecedores"
@@ -109,6 +143,46 @@ export default function SobrePage() {
                     </p>
                   </div>
                 </div>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
+
+      <Section id="jomar-hanum" className="scroll-mt-28 pt-0">
+        <Container>
+          <div className="grid grid-cols-1 items-center gap-10 rounded-3xl border border-brand-100 bg-white p-8 md:grid-cols-[220px_1fr] md:p-12">
+            <Reveal>
+              <Image
+                src={jomar.photo}
+                alt="Jomar Hanum, diretor da JH Online Solutions"
+                width={220}
+                height={220}
+                className="mx-auto size-44 rounded-full object-cover ring-4 ring-brand-50 md:size-[220px]"
+              />
+            </Reveal>
+            <Reveal delay={0.1}>
+              <Eyebrow>Quem está à frente</Eyebrow>
+              <h2 className="font-display mt-5 text-2xl font-semibold tracking-tight text-ink-900 md:text-3xl">
+                Jomar Hanum
+              </h2>
+              <p className="mt-1 text-sm font-medium text-accent-600">
+                Diretor da JH Online Solutions
+              </p>
+              <div className="mt-5 space-y-4 text-[17px] leading-relaxed text-ink-700">
+                <p>
+                  Jomar Hanum dirige a JH Online Solutions e acompanha de
+                  perto cada projeto da empresa, da conversa inicial com o
+                  cliente até a entrega. É o desenvolvedor do Axon, o agente
+                  de atendimento por inteligência artificial no WhatsApp que
+                  a JH usa no próprio atendimento e implanta para clientes.
+                </p>
+                <p>
+                  Também está por trás dos demais serviços do portfólio:{" "}
+                  construção de sites, criação de lojas virtuais, anúncios no
+                  Google e no Instagram e desenvolvimento de aplicativos.
+                  É quem revisa e assina os artigos do blog.
+                </p>
               </div>
             </Reveal>
           </div>

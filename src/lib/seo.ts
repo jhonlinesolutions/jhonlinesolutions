@@ -9,7 +9,7 @@ type PageMetadataInput = {
   description: string;
   path: string;
   image?: { url: string; alt: string };
-  article?: { publishedTime: string; authors: string[] };
+  article?: { publishedTime: string; modifiedTime?: string; authors: string[] };
 };
 
 // Builds the full metadata for a page. Next.js replaces nested objects like

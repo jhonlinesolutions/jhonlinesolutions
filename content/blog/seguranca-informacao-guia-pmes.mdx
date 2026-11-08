@@ -1,7 +1,8 @@
 ---
 title: "Segurança da informação: um guia prático para PMEs"
 description: "Você não precisa de um orçamento de banco para proteger sua empresa. Veja um plano realista de segurança da informação para pequenas e médias empresas, com prioridades claras."
-date: "2026-04-09"
+date: "2026-07-08"
+updated: "2026-11-08"
 category: "Segurança"
 author: "Jomar Hanum"
 authorRole: "Diretor"
@@ -9,28 +10,79 @@ cover: "/images/blog/seguranca-informacao-guia-pmes.jpg"
 coverAlt: "Código verde em cascata sobre fundo escuro"
 ---
 
-Segurança da informação costuma ser tratada como assunto "para empresas grandes". Na prática, PMEs são alvos frequentes justamente por terem defesas mais fracas — e um único incidente pode comprometer meses de faturamento.
+**Em resumo:** a maior parte do risco de segurança de uma pequena ou média empresa se resolve com cinco medidas de baixo custo: autenticação em dois fatores e controle de acessos, backups com restauração testada, sistemas sempre atualizados, adequação à LGPD e um plano simples de resposta a incidentes. Dá para implantar tudo em cerca de três meses, uma prioridade por vez.
+
+Segurança da informação costuma ser vista como assunto de empresa grande. Na prática, pequenas e médias empresas são alvos frequentes justamente por terem defesas mais fracas, e um único incidente, como um ransomware que sequestra os arquivos ou uma conta de e-mail invadida que dispara boletos falsos para clientes, pode parar a operação por dias.
+
+A boa notícia é que a maioria dos ataques explora falhas básicas. Este guia organiza as medidas por prioridade, da mais urgente para a menos urgente, para que você saiba por onde começar.
 
 ## Prioridade 1: controle de acessos
 
-A causa mais comum de incidentes que vemos não é um ataque sofisticado, é uma senha fraca ou reutilizada, ou um ex-funcionário que manteve acesso a sistemas críticos. Autenticação multifator (MFA) em todos os sistemas relevantes e um processo formal de desligamento de acessos resolvem a maior parte do risco com esforço mínimo.
+A causa mais comum de incidentes não é um ataque sofisticado. É uma senha fraca ou reutilizada, ou um ex-funcionário que manteve acesso a sistemas importantes.
+
+- **Ative a autenticação em dois fatores** no e-mail, no banco, no ERP, nas redes sociais da empresa e em qualquer sistema acessível pela internet.
+- **Use um gerenciador de senhas** para a equipe, para acabar com senhas anotadas em papel ou repetidas em vários serviços.
+- **Crie um processo de desligamento.** Quando alguém sai da empresa, uma lista de verificação garante que todos os acessos sejam removidos no mesmo dia.
+- **Dê a cada pessoa só o acesso de que ela precisa.** Contas de administrador devem ser exceção, não padrão.
 
 ## Prioridade 2: backups testados
 
-Ter backup não é suficiente — é preciso testar a restauração periodicamente. Recomendamos a regra 3-2-1: três cópias dos dados, em dois tipos de mídia diferentes, com uma cópia fora do ambiente principal.
+Ter backup não basta; é preciso testar a restauração de tempos em tempos. Muitas empresas só descobrem que o backup não funcionava no dia em que precisam dele.
 
-## Prioridade 3: gestão de vulnerabilidades
+A regra mais usada é a **3-2-1**: três cópias dos dados, em dois tipos de mídia diferentes, com uma cópia fora do ambiente principal. Contra ransomware, vale ter pelo menos uma cópia que não possa ser apagada ou alterada a partir da rede da empresa.
 
-Manter sistemas operacionais, bibliotecas e dependências atualizadas elimina uma fatia enorme dos vetores de ataque conhecidos. Um processo simples de varredura mensal já coloca a empresa à frente da maioria do mercado.
+Uma boa prática simples: uma vez por trimestre, escolha um arquivo ou sistema ao acaso e restaure a partir do backup, cronometrando quanto tempo levou.
+
+## Prioridade 3: atualizações e vulnerabilidades
+
+Manter sistemas operacionais, programas, plugins do site e equipamentos de rede atualizados elimina uma grande parte das falhas conhecidas que os ataques exploram.
+
+- Ative a atualização automática onde for possível.
+- Mantenha uma lista dos sistemas e equipamentos da empresa, com a versão de cada um.
+- Substitua o que não recebe mais atualizações do fabricante.
+- Faça uma varredura mensal de vulnerabilidades nos sistemas expostos à internet.
 
 ## Prioridade 4: conformidade com a LGPD
 
-Para empresas que tratam dados pessoais de clientes ou colaboradores, a LGPD não é opcional. Isso envolve mapear quais dados são coletados, por quanto tempo são retidos, e garantir que existam bases legais claras para cada tratamento.
+Para empresas que tratam dados pessoais de clientes ou colaboradores, a [Lei Geral de Proteção de Dados](https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm) não é opcional. Isso envolve mapear quais dados são coletados, para quê, por quanto tempo são guardados e com quem são compartilhados, além de garantir uma base legal para cada uso.
+
+A [Autoridade Nacional de Proteção de Dados (ANPD)](https://www.gov.br/anpd/pt-br) publica guias e regras específicas para agentes de pequeno porte, com obrigações simplificadas. Vale consultar antes de contratar qualquer consultoria.
 
 ## Prioridade 5: resposta a incidentes
 
-Ter um plano simples — quem aciona, quem comunica, quem investiga — reduz drasticamente o tempo de resposta quando algo acontece. Empresas sem plano costumam perder horas críticas apenas decidindo o que fazer.
+Ter um plano simples (quem aciona, quem comunica, quem investiga) reduz muito o tempo de reação quando algo acontece. Sem plano, horas preciosas se perdem apenas decidindo o que fazer.
 
-## Comece pequeno, mas comece
+O plano cabe em uma página:
 
-Não é preciso implementar tudo de uma vez. Um plano de segurança em três meses, priorizando os itens acima, já reduz a superfície de risco de forma significativa — e custa uma fração do que um incidente de vazamento de dados representaria.
+1. Quem deve ser avisado primeiro e por qual canal.
+2. Como isolar o equipamento ou a conta afetada.
+3. Quem fala com clientes, fornecedores e, se for o caso, com a ANPD.
+4. Onde estão os backups e quem sabe restaurá-los.
+
+## Não esqueça das pessoas
+
+Grande parte dos ataques começa com uma mensagem falsa, seja um e-mail, um SMS ou um WhatsApp, pedindo para clicar em um link ou fazer um pagamento urgente. Um treinamento curto e periódico com a equipe, mostrando exemplos reais de golpes, é uma das medidas com melhor custo-benefício. A [Cartilha de Segurança para Internet do CERT.br](https://cartilha.cert.br/) tem material gratuito e didático que pode ser usado nesse treinamento.
+
+## Um plano de 90 dias
+
+- **Mês 1:** autenticação em dois fatores em tudo, gerenciador de senhas e revisão de acessos.
+- **Mês 2:** backups na regra 3-2-1, primeiro teste de restauração e atualização dos sistemas.
+- **Mês 3:** mapeamento de dados para a LGPD, plano de resposta a incidentes e treinamento da equipe.
+
+Se você quer saber em que ponto a sua empresa está hoje, o [checklist de maturidade de TI](/blog/diagnostico-ti-checklist-maturidade-empresarial) inclui um bloco sobre segurança. E se os incidentes já são recorrentes, pode ser um dos [sinais de que a infraestrutura precisa ser modernizada](/blog/sinais-modernizar-infraestrutura-ti).
+
+## Perguntas frequentes
+
+### Pequenas empresas são mesmo alvo de ataques?
+
+Sim. Muitos ataques são automatizados e procuram qualquer sistema vulnerável, sem escolher o tamanho da empresa. Defesas mais fracas tornam as PMEs alvos mais fáceis.
+
+### Antivírus é suficiente?
+
+Não. O antivírus é uma camada importante, mas não protege contra senha vazada, golpe por mensagem ou falta de backup. Ele deve vir junto com as outras medidas deste guia.
+
+### Por onde começar se o orçamento é curto?
+
+Pela autenticação em dois fatores e pelo backup testado. As duas medidas custam pouco ou nada e cobrem os cenários que mais causam prejuízo.
+
+Não é preciso implementar tudo de uma vez. Um plano de três meses, seguindo as prioridades acima, já reduz bastante o risco e custa uma fração do que um incidente representaria. Se quiser ajuda para montar esse plano, [fale com a JH Online Solutions](/contato).

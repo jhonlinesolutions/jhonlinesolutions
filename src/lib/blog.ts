@@ -9,6 +9,7 @@ export type BlogFrontmatter = {
   title: string;
   description: string;
   date: string;
+  updated?: string; // data da última revisão relevante do conteúdo
   category: string;
   author: string;
   authorRole: string;

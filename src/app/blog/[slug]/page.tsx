@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllSlugs, getAllPosts, getPostBySlug, formatDate } from "@/lib/blog";
-import { getAuthorPhoto } from "@/lib/authors";
+import { getAuthor, authorId } from "@/lib/authors";
 import { Section, Container } from "@/components/section";
 import { mdxComponents } from "@/components/mdx-components";
 import { BlogCard } from "@/components/blog-card";
@@ -38,7 +38,11 @@ export async function generateMetadata({
     description: post.description,
     path: `/blog/${post.slug}`,
     image: { url: post.cover, alt: post.coverAlt },
-    article: { publishedTime: post.date, authors: [post.author] },
+    article: {
+      publishedTime: post.date,
+      ...(post.updated && { modifiedTime: post.updated }),
+      authors: [post.author],
+    },
   });
 }
 
@@ -51,11 +55,15 @@ export default async function BlogPostPage({
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const related = getAllPosts()
-    .filter((p) => p.slug !== slug)
-    .slice(0, 3);
+  // Mesma categoria primeiro (mais recentes antes); completa com os demais posts.
+  const others = getAllPosts().filter((p) => p.slug !== slug);
+  const related = [
+    ...others.filter((p) => p.category === post.category),
+    ...others.filter((p) => p.category !== post.category),
+  ].slice(0, 3);
 
-  const authorPhoto = getAuthorPhoto(post.author);
+  const author = getAuthor(post.author);
+  const authorPhoto = author?.photo;
   const url = absoluteUrl(`/blog/${post.slug}`);
   const jsonLd = {
     "@context": "https://schema.org",
@@ -69,15 +77,20 @@ export default async function BlogPostPage({
         description: post.description,
         image: absoluteUrl(post.cover),
         datePublished: post.date,
-        dateModified: post.date,
+        dateModified: post.updated ?? post.date,
         inLanguage: siteConfig.locale,
         articleSection: post.category,
         timeRequired: `PT${post.readingMinutes}M`,
         author: {
           "@type": "Person",
+          ...(author && {
+            "@id": authorId(author),
+            url: absoluteUrl(author.profilePath),
+            image: absoluteUrl(author.photo),
+            ...(author.sameAs.length > 0 && { sameAs: author.sameAs }),
+          }),
           name: post.author,
           jobTitle: post.authorRole,
-          ...(authorPhoto && { image: absoluteUrl(authorPhoto) }),
           worksFor: { "@id": ORGANIZATION_ID },
         },
         publisher: { "@id": ORGANIZATION_ID },
@@ -134,12 +147,27 @@ export default async function BlogPostPage({
                   />
                 )}
                 <span>
-                  <span className="font-medium text-ink-900">{post.author}</span>,{" "}
-                  {post.authorRole}
+                  {author ? (
+                    <Link
+                      href={author.profilePath}
+                      rel="author"
+                      className="font-medium text-ink-900 transition-colors duration-200 hover:text-accent-600"
+                    >
+                      {post.author}
+                    </Link>
+                  ) : (
+                    <span className="font-medium text-ink-900">{post.author}</span>
+                  )}
+                  , {post.authorRole}
                 </span>
               </span>
               <span aria-hidden>·</span>
-              <span>{formatDate(post.date)}</span>
+              <span>
+                {formatDate(post.date)}
+                {post.updated && post.updated !== post.date && (
+                  <> (atualizado em {formatDate(post.updated)})</>
+                )}
+              </span>
               <span aria-hidden>·</span>
               <span>{post.readingMinutes} min de leitura</span>
             </div>
