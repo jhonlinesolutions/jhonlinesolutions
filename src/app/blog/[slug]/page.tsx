@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllSlugs, getAllPosts, getPostBySlug, formatDate } from "@/lib/blog";
+import { getAuthorPhoto } from "@/lib/authors";
 import { Section, Container } from "@/components/section";
 import { mdxComponents } from "@/components/mdx-components";
 import { BlogCard } from "@/components/blog-card";
@@ -53,6 +55,7 @@ export default async function BlogPostPage({
     .filter((p) => p.slug !== slug)
     .slice(0, 3);
 
+  const authorPhoto = getAuthorPhoto(post.author);
   const url = absoluteUrl(`/blog/${post.slug}`);
   const jsonLd = {
     "@context": "https://schema.org",
@@ -74,6 +77,7 @@ export default async function BlogPostPage({
           "@type": "Person",
           name: post.author,
           jobTitle: post.authorRole,
+          ...(authorPhoto && { image: absoluteUrl(authorPhoto) }),
           worksFor: { "@id": ORGANIZATION_ID },
         },
         publisher: { "@id": ORGANIZATION_ID },
@@ -118,9 +122,21 @@ export default async function BlogPostPage({
             </h1>
           </Reveal>
           <Reveal delay={0.15}>
-            <div className="mt-5 flex items-center gap-3 text-sm text-ink-500">
-              <span>
-                {post.author}, {post.authorRole}
+            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-ink-500">
+              <span className="inline-flex items-center gap-2.5">
+                {authorPhoto && (
+                  <Image
+                    src={authorPhoto}
+                    alt={post.author}
+                    width={36}
+                    height={36}
+                    className="size-9 rounded-full object-cover ring-2 ring-white"
+                  />
+                )}
+                <span>
+                  <span className="font-medium text-ink-900">{post.author}</span>,{" "}
+                  {post.authorRole}
+                </span>
               </span>
               <span aria-hidden>·</span>
               <span>{formatDate(post.date)}</span>
