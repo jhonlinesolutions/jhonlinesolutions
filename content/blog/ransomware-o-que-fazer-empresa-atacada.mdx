@@ -1,0 +1,77 @@
+---
+title: "Ransomware: o que fazer se a sua empresa for atacada"
+description: "Descubra o que fazer em um ataque de ransomware: passos imediatos para conter a ameaça, mitigar prejuízos e recuperar a operação da sua empresa com segurança."
+date: "2026-11-20"
+category: "Segurança"
+author: "Jomar Hanum"
+authorRole: "Diretor"
+cover: "/images/blog/ransomware-o-que-fazer-empresa-atacada.jpg"
+coverAlt: "Ransomware: o que fazer se a sua empresa for atacada"
+---
+
+Se a sua equipe se deparou com uma tela de bloqueio ou arquivos com extensões desconhecidas, saber em uma crise de ransomware o que fazer nos primeiros minutos determina se o negócio sofrerá uma interrupção passageira ou um prejuízo prolongado. A ação imediata consiste em isolar os computadores afetados da rede local e da internet, suspender credenciais de acesso e jamais negociar ou pagar o resgate solicitado. A partir desse isolamento inicial, os especialistas em tecnologia conseguem avaliar o vetor de invasão, conter a propagação e iniciar a restauração dos sistemas a partir de cópias limpas e seguras.
+
+O ataque de ransomware não acontece por acaso. Na maioria das vezes, invasores passam dias ou semanas dentro do ambiente corporativo antes de acionar a criptografia dos arquivos. Eles exploram portas de acesso remoto desprotegidas, mensagens de phishing recebidas por colaboradores desatentos ou softwares desatualizados. Quando a mensagem exigindo pagamento finalmente aparece na tela, o relógio começa a correr contra a operação da empresa.
+
+## Primeiros minutos: ações imediatas para conter o ataque
+
+No momento em que um usuário ou o time interno percebe o bloqueio de dados, o impulso inicial costuma ser o desespero. Manter a calma e executar um roteiro de contenção estruturado impede que uma máquina comprometida contamine todo o parque tecnológico da empresa.
+
+### 1. Isole os dispositivos da rede física e sem fio
+O ransomware busca ativamente pastas compartilhadas, servidores de arquivos e outros computadores conectados na mesma rede local. Desconecte o cabo de rede Ethernet de todas as máquinas suspeitas e desligue o adaptador Wi-Fi imediatamente. Se a empresa utiliza redes virtuais privadas (VPNs) ligando filiais ou funcionários remotos à matriz, encerre essas conexões no firewall central para bloquear o tráfego lateral.
+
+Não desligue o computador no botão de energia nem puxe da tomada, a menos que seja a única forma de desconectá-lo da rede. Manter a máquina ligada, porém isolada, preserva os dados voláteis na memória RAM, que são fundamentais para os peritos analisarem a variante do malware e o método exato de invasão.
+
+### 2. Proteja e desconecte os armazenamentos de backup
+Criminosos experientes procuram ativamente por repositórios de cópias de segurança antes de iniciar o sequestro dos dados. Se o seu backup estiver conectado como uma unidade de rede mapeada no servidor atingido, desconecte essa unidade imediatamente. Verifique a integridade dos armazenamentos externos e confirme se as cópias em nuvem ou em mídias desconectadas permaneceram intactas, seguindo boas práticas de isolamento que detalhamos em nosso artigo sobre [backup em nuvem para empresas](/blog/backup-em-nuvem-para-empresas-como-escolher).
+
+### 3. Suspenda acessos administrativos e redefina credenciais
+Altere imediatamente as senhas de contas privilegiadas, como administradores de domínio, contas de acesso ao painel de e-mails corporativos, roteadores e serviços em nuvem. Force o encerramento de todas as sessões ativas nesses painéis. Se o invasor obteve credenciais de acesso remoto via RDP ou SSH, fechar essas portas no roteador de borda corta a comunicação do atacante com a infraestrutura interna.
+
+## O que nunca fazer durante um incidente de ransomware
+
+Tão importante quanto saber agir é evitar erros comuns que podem piorar o cenário ou gerar implicações jurídicas graves para o negócio.
+
+*   **Não pague o resgate:** pagar aos criminosos não oferece nenhuma garantia técnica ou jurídica de que os arquivos serão recuperados. Muitas vezes, a chave fornecida falha, corrompe os arquivos restantes ou os invasores exigem pagamentos adicionais após a primeira transferência. Além disso, o pagamento financia o crime organizado e coloca a sua empresa em listas de alvos vulneráveis que voltam a ser atacados meses depois.
+*   **Não use ferramentas de descriptografia desconhecidas sem validação:** baixar utilitários duvidosos encontrados em fóruns da internet pode agravar a infecção ou danificar permanentemente os blocos de dados criptografados, inviabilizando qualquer chance de recuperação técnica.
+*   **Não formate os equipamentos antes da perícia básica:** apagar os discos de imediato elimina pistas cruciais sobre a porta de entrada da invasão. Sem corrigir a falha original, reinstalar o sistema do zero apenas deixa a porta aberta para que os invasores retornem no dia seguinte.
+
+## Protocolo de investigação e recuperação operacional
+
+Com a contenção realizada e o ambiente isolado, tem início a fase de recuperação técnica e retomada segura dos trabalhos. Cada etapa deve ser documentada em detalhes para atender aos protocolos de governança e auditoria.
+
+O primeiro passo técnico consiste em identificar o ponto de entrada e a variante da ameaça. Consultar materiais educativos e guias de referência, como a [Cartilha de Segurança para Internet do CERT.br](https://cartilha.cert.br/), auxilia a equipe a entender as principais técnicas de engenharia social e exploração de brechas utilizadas em território nacional. Com isso, os administradores conseguem sanar as fragilidades em roteadores, servidores web ou contas comprometidas.
+
+Em seguida, a equipe técnica deve preparar um ambiente limpo e isolado para testar a restauração dos backups. Antes de disponibilizar os sistemas aos usuários, os dados restaurados precisam passar por uma varredura rigorosa com ferramentas de segurança atualizadas para garantir que nenhum agente dormente do malware foi restaurado junto com os arquivos de banco de dados ou sistemas de gestão.
+
+## Implicações da LGPD e comunicação do incidente
+
+Os ataques de ransomware modernos raramente se limitam a travar o acesso aos dados. Praticamente todos os grupos utilizam a chamada dupla extorsão: antes de bloquear os computadores, eles copiam arquivos confidenciais para fora da empresa e ameaçam divulgar relatórios contábeis, contratos e dados pessoais de funcionários e clientes na internet.
+
+Se houver indícios de que dados pessoais foram acessados ou expostos durante a invasão, a organização tem o dever legal de reportar o ocorrido à Autoridade Nacional de Proteção de Dados ([ANPD](https://www.gov.br/anpd/pt-br)), além de comunicar os titulares afetados quando houver risco relevante aos seus direitos e liberdades. A transparência na condução do incidente, acompanhada de registros técnicos sobre as medidas de segurança adotadas antes e depois do ataque, é essencial para demonstrar conformidade e evitar sanções administrativas severas. Adotar uma postura preventiva é sempre o caminho mais seguro, conforme explicamos em nosso guia sobre [segurança da informação para PMEs](/blog/seguranca-informacao-guia-pmes).
+
+## Como a JH Online Solutions conduz a segurança e resposta a incidentes
+
+Na JH Online Solutions, ajudamos empresas a construir uma infraestrutura resiliente capaz de resistir e responder rapidamente a ameaças cibernéticas. Nossa abordagem técnica segue etapas bem estruturadas:
+
+*   **Diagnóstico profundo do cenário:** realizamos uma auditoria completa da infraestrutura de TI, identificando portas expostas, credenciais vulneráveis, softwares sem suporte e rotinas frágeis de cópia de segurança.
+*   **Priorização com base no risco:** criamos um plano de ação imediato que prioriza as correções mais urgentes — aquelas que reduzem de forma expressiva o risco de invasão com o menor atrito operacional para a equipe.
+*   **Implementação em etapas:** estruturamos políticas de controle de acesso, segmentação de rede, autenticação multifator em todos os níveis e arquitetura de backup imutável em nuvem.
+*   **Acompanhamento contínuo:** fornecemos suporte consultivo contínuo, com monitoramento preventivo e rotinas periódicas de teste de restauração para garantir que os dados possam ser recuperados sem falhas caso ocorra um incidente.
+
+## Perguntas frequentes
+
+### Vale a pena pagar o resgate para recuperar os dados mais rápido?
+Não é recomendável pagar o resgate em nenhuma circunstância. Além de não existir garantia de recebimento da chave de desbloqueio, o pagamento estimula novos ataques contra a mesma infraestrutura e financia grupos criminosos. A única forma segura e sustentável de restabelecer os serviços é restaurar a operação por meio de backups independentes e protegidos.
+
+### Desligar o computador diretamente na tomada ajuda a conter o ransomware?
+Desligar forçadamente a máquina na tomada só deve ser feito se você não conseguir desconectar os cabos de rede e o sinal Wi-Fi. O desligamento abrupto destrói os dados presentes na memória RAM do computador, o que pode impedir que especialistas analisem o processo malicioso em execução e descubram por onde o invasor conseguiu invadir o sistema.
+
+### O ransomware consegue infectar e apagar os backups em nuvem?
+Sim, caso as cópias em nuvem estejam configuradas como uma pasta sincronizada automaticamente ou conectadas diretamente ao servidor infectado. Para evitar que o ransomware atinja os backups, a infraestrutura deve utilizar políticas de imutabilidade, controle estrito de versões e credenciais separadas com autenticação multifator, impedindo alterações não autorizadas.
+
+## Conclusão
+
+Enfrentar um sequestro de dados é um dos desafios operacionais mais severos que uma empresa pode vivenciar. No entanto, ter respostas claras para o que fazer diante de um ransomware — isolando a rede, evitando o pagamento de chantagens e restaurando o ambiente por meio de cópias validadas — transforma uma situação crítica em um processo de contenção controlado.
+
+Se a sua empresa precisa fortalecer a infraestrutura atual, estruturar backups imutáveis ou desenhar um plano sólido de resposta a incidentes, entre em contato com a equipe de consultores da JH Online Solutions e descubra como elevar o nível de proteção do seu negócio.
