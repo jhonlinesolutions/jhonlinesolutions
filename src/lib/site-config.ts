@@ -9,7 +9,8 @@ export const siteConfig = {
   email: "contato@jhonlinesolutions.com.br",
   phone: "+55 11 96376-5638",
   phoneDisplay: "(11) 96376-5638",
-  whatsapp: "https://wa.me/5511963765638",
+  // texto pré-preenchido: identifica no atendimento (Ana Lúcia/Axon) que o lead veio do site da JH
+  whatsapp: "https://wa.me/5511963765638?text=" + encodeURIComponent("Olá! Vim pelo site da JH Online Solutions."),
   address: {
     street: "Av. Prestes Maia, 241",
     complement: "Sala 3026",
