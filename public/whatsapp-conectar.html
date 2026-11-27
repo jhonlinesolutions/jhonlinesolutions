@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Conectar WhatsApp | JH Online Solutions</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; max-width: 640px; margin: 48px auto; padding: 0 20px; line-height: 1.55; }
+  h1 { font-size: 1.5rem; margin-bottom: .25rem; }
+  .sub { opacity: .75; margin-top: 0; }
+  ol { padding-left: 1.2rem; }
+  button { background: #1877f2; color: #fff; border: 0; border-radius: 8px; padding: 14px 22px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+  button[disabled] { opacity: .5; cursor: default; }
+  #status { margin-top: 24px; padding: 16px; border-radius: 8px; background: rgba(127,127,127,.12); white-space: pre-wrap; font-family: ui-monospace, Consolas, monospace; font-size: .9rem; display: none; }
+  .ok { border-left: 4px solid #22a06b; } .erro { border-left: 4px solid #e2483d; }
+</style>
+</head>
+<body>
+<h1>Conectar o WhatsApp Business à API oficial</h1>
+<p class="sub">Uso interno da JH Online Solutions (coexistência: o número continua no app WhatsApp Business do celular).</p>
+<ol>
+  <li>Tenha o celular com o <b>WhatsApp Business</b> (versão 2.24.17 ou mais nova) em mãos.</li>
+  <li>Clique no botão, entre com o Facebook e escolha o portfólio <b>JH Negocios on 01</b>.</li>
+  <li>Escolha <b>conectar o app WhatsApp Business existente</b> e escaneie o QR code pelo celular.</li>
+  <li>Ao terminar, esta página mostra os dados da conexão. Envie-os ao Claude.</li>
+</ol>
+<p><button id="conectar" disabled>Carregando…</button></p>
+<div id="status"></div>
+
+<script>
+  // App "JH Axon" e configuração de Login do Facebook para Empresas (cadastro incorporado do WhatsApp)
+  var APP_ID = '1006462161958176';
+  var CONFIG_ID = '1470162637774421';
+  var GRAPH_VERSION = 'v23.0';
+
+  var resultado = {};
+  var statusEl = document.getElementById('status');
+  var botao = document.getElementById('conectar');
+
+  function mostrar(texto, classe) {
+    statusEl.style.display = 'block';
+    statusEl.className = classe || '';
+    statusEl.textContent = texto;
+  }
+  function atualizar() {
+    var linhas = [];
+    if (resultado.evento) linhas.push('Evento: ' + resultado.evento);
+    if (resultado.waba_id) linhas.push('ID da conta do WhatsApp (WABA): ' + resultado.waba_id);
+    if (resultado.phone_number_id) linhas.push('ID do número: ' + resultado.phone_number_id);
+    if (resultado.business_id) linhas.push('ID do portfólio: ' + resultado.business_id);
+    if (resultado.code) linhas.push('Código recebido: sim (não precisa copiar)');
+    if (resultado.erro) linhas.push('Erro: ' + resultado.erro);
+    var ok = resultado.waba_id && !resultado.erro;
+    mostrar((ok ? 'Conectado. ' : '') + '\n' + linhas.join('\n'), ok ? 'ok' : (resultado.erro ? 'erro' : ''));
+  }
+
+  // Eventos do cadastro incorporado chegam por postMessage da facebook.com
+  window.addEventListener('message', function (event) {
+    if (!/(^|\.)facebook\.com$/.test(new URL(event.origin).hostname)) return;
+    var dados;
+    try { dados = typeof event.data === 'string' ? JSON.parse(event.data) : event.data; } catch (e) { return; }
+    if (!dados || dados.type !== 'WA_EMBEDDED_SIGNUP') return;
+    resultado.evento = dados.event;
+    var d = dados.data || {};
+    if (d.waba_id) resultado.waba_id = d.waba_id;
+    if (d.phone_number_id) resultado.phone_number_id = d.phone_number_id;
+    if (d.business_id) resultado.business_id = d.business_id;
+    if (dados.event === 'CANCEL') resultado.erro = 'cadastro cancelado' + (d.current_step ? ' na etapa ' + d.current_step : '');
+    if (dados.event === 'ERROR') resultado.erro = d.error_message || 'erro no cadastro';
+    atualizar();
+  });
+
+  window.fbAsyncInit = function () {
+    FB.init({ appId: APP_ID, autoLogAppEvents: true, xfbml: false, version: GRAPH_VERSION });
+    botao.disabled = false;
+    botao.textContent = 'Conectar WhatsApp Business';
+  };
+
+  botao.addEventListener('click', function () {
+    mostrar('Aguardando o cadastro na janela do Facebook…');
+    FB.login(function (resposta) {
+      if (resposta.authResponse && resposta.authResponse.code) {
+        resultado.code = resposta.authResponse.code;
+      } else if (!resultado.waba_id) {
+        resultado.erro = resultado.erro || 'login não concluído';
+      }
+      atualizar();
+    }, {
+      config_id: CONFIG_ID,
+      response_type: 'code',
+      override_default_response_type: true,
+      extras: {
+        setup: {},
+        featureType: 'whatsapp_business_app_onboarding',
+        sessionInfoVersion: '3'
+      }
+    });
+  });
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js"></script>
+</body>
+</html>
