@@ -17,7 +17,7 @@ export default function PoliticaDePrivacidadePage() {
       <PageHeader
         eyebrow="Legal"
         title="Política de Privacidade"
-        description="Última atualização: julho de 2026."
+        description="Última atualização: novembro de 2026."
       />
       <Section className="pt-0 pb-24">
         <Container className="max-w-3xl">
@@ -100,9 +100,57 @@ export default function PoliticaDePrivacidadePage() {
               </p>
             </div>
 
+            <div id="whatsapp">
+              <h2 className="font-display mb-3 text-xl font-semibold text-ink-900">
+                6. Atendimento pelo WhatsApp
+              </h2>
+              <p>
+                Quando você nos chama no WhatsApp, recebemos o seu número, o
+                nome do seu perfil e o conteúdo das mensagens que você envia
+                (textos, áudios, imagens e documentos). Esses dados são usados
+                para responder ao seu contato, entender o seu negócio, agendar
+                demonstrações e reuniões e, por até 7 dias depois da conversa,
+                enviar mensagens de acompanhamento sobre o assunto que você
+                procurou. Você pode parar esse acompanhamento a qualquer
+                momento tocando em &ldquo;Não tenho interesse&rdquo; ou
+                avisando na conversa.
+              </p>
+              <p className="mt-4">
+                O atendimento é feito com apoio de uma assistente virtual com
+                inteligência artificial. Para isso, os dados passam pelos
+                provedores necessários ao serviço: Meta (WhatsApp Business
+                Platform), Google (processamento de linguagem e transcrição de
+                áudios) e ElevenLabs (geração de voz), além da nossa
+                infraestrutura de automação e de uma planilha interna de
+                acompanhamento dos contatos. Guardamos as conversas e os
+                dados do contato por até 12 meses após a última mensagem,
+                salvo pedido de exclusão ou obrigação legal.
+              </p>
+            </div>
+
+            <div id="exclusao-de-dados">
+              <h2 className="font-display mb-3 text-xl font-semibold text-ink-900">
+                7. Como pedir a exclusão dos seus dados
+              </h2>
+              <p>
+                Para excluir os dados que temos sobre você, envie
+                &ldquo;excluir meus dados&rdquo; na mesma conversa do WhatsApp
+                ou escreva para{" "}
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="font-medium text-accent-600 underline underline-offset-4"
+                >
+                  {siteConfig.email}
+                </a>{" "}
+                informando o número de WhatsApp usado. Apagamos as conversas,
+                o registro do contato e os dados de acompanhamento em até 15
+                dias e confirmamos a exclusão pelo mesmo canal.
+              </p>
+            </div>
+
             <div>
               <h2 className="font-display mb-3 text-xl font-semibold text-ink-900">
-                6. Alterações a esta política
+                8. Alterações a esta política
               </h2>
               <p>
                 Esta política pode ser atualizada periodicamente. A data da
